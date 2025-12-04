@@ -1,0 +1,223 @@
+﻿
+
+
+
+
+@model Hero.Models.ViewModels.CorporateEmissionInputViewModel
+@{
+    ViewData["Title"] = "Submit Corporate Emissions";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .card-dark {
+        background: rgba(30, 30, 30, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        backdrop-filter: blur(12px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card-dark:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        }
+
+    .form-label {
+        color: #e5e5e5;
+        font-weight: 500;
+    }
+
+    .form-control {
+        background-color: #2b2b2b;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+            background-color: #2b2b2b;
+            color: #fff;
+        }
+
+    .btn-primary {
+        background: transparent;
+        border: 2px solid #10b981;
+        color: #10b981;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: #10b981;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+        }
+
+    .alert {
+        border-radius: 0.75rem;
+        font-weight: 500;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+        .page-header p {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+</style>
+
+<div class="container mt-5 pt-5">
+    <div class="page-header">
+        <p>Track and manage your company’s carbon footprint with ease</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success shadow-sm">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["InfoMessage"] != null)
+    {
+        <div class="alert alert-info shadow-sm">@TempData["InfoMessage"]</div>
+    }
+
+    <form asp-action="Submit" method="post" class="needs-validation" novalidate>
+        <!-- Company Info -->
+        <div class="card card-dark p-4 mb-4">
+            <div class="mb-3">
+                <label asp-for="CompanyName" class="form-label">Company</label>
+                <input asp-for="CompanyName" class="form-control" readonly />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Year" class="form-label">Year</label>
+                    <input asp-for="Year" class="form-control" type="number" required />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Month" class="form-label">Month</label>
+                    <input asp-for="Month" class="form-control" type="number" required />
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emission Inputs -->
+        <div class="card card-dark p-4 mb-4">
+            <div class="mb-3">
+                <label asp-for="ElectricityKWh" class="form-label">Electricity (kWh)</label>
+                <input asp-for="ElectricityKWh" class="form-control" type="number" min="0" step="0.01" required id="electricity" placeholder="0" data-bs-toggle="tooltip" title="Factor: 0.55 kg CO₂ per kWh" />
+                <small class="text-muted">Factor: 0.55 kg CO₂ per kWh</small>
+                <span asp-validation-for="ElectricityKWh" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FuelLiters" class="form-label">Fuel (Liters)</label>
+                <input asp-for="FuelLiters" class="form-control" type="number" min="0" step="0.01" required id="fuel" placeholder="0" data-bs-toggle="tooltip" title="Factor: 2.68 kg CO₂ per liter" />
+                <small class="text-muted">Factor: 2.68 kg CO₂ per liter</small>
+                <span asp-validation-for="FuelLiters" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="TransportKm" class="form-label">Transport (Km)</label>
+                <input asp-for="TransportKm" class="form-control" type="number" min="0" step="0.01" required id="transport" placeholder="0" data-bs-toggle="tooltip" title="Factor: 0.12 kg CO₂ per km" />
+                <small class="text-muted">Factor: 0.12 kg CO₂ per km</small>
+                <span asp-validation-for="TransportKm" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="WasteKg" class="form-label">Waste (Kg)</label>
+                <input asp-for="WasteKg" class="form-control" type="number" min="0" step="0.01" required id="waste" placeholder="0" data-bs-toggle="tooltip" title="Factor: 1.9 kg CO₂ per kg" />
+                <small class="text-muted">Factor: 1.9 kg CO₂ per kg</small>
+                <span asp-validation-for="WasteKg" class="text-danger"></span>
+            </div>
+
+            <!-- Real-time CO2 Result -->
+            <div class="alert alert-info mt-3" id="co2Result" aria-live="polite">
+                Total CO₂ Emissions: 0.00 kg
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn" disabled>Submit Emissions</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+
+    function validateForm() {
+        const electricity = document.getElementById("electricity").value;
+        const fuel = document.getElementById("fuel").value;
+        const transport = document.getElementById("transport").value;
+        const waste = document.getElementById("waste").value;
+        const submitBtn = document.getElementById("submitBtn");
+
+        if (electricity && fuel && transport && waste) {
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
+        }
+    }
+
+    function calculateCO2() {
+        const electricity = Math.max(parseFloat(document.getElementById("electricity").value) || 0, 0);
+        const fuel = Math.max(parseFloat(document.getElementById("fuel").value) || 0, 0);
+        const transport = Math.max(parseFloat(document.getElementById("transport").value) || 0, 0);
+        const waste = Math.max(parseFloat(document.getElementById("waste").value) || 0, 0);
+
+        // Emission factors (example values)
+        const efElectricity = 0.55; // kg CO₂ per kWh
+        const efFuel = 2.68;        // kg CO₂ per liter
+        const efTransport = 0.12;   // kg CO₂ per km
+        const efWaste = 1.9;        // kg CO₂ per kg
+
+        const totalCO2 = (electricity * efElectricity) +
+                         (fuel * efFuel) +
+                         (transport * efTransport) +
+                         (waste * efWaste);
+
+        document.getElementById("co2Result").innerText =
+            "Total CO₂ Emissions: " + totalCO2.toFixed(2) + " kg";
+
+        validateForm();
+    }
+
+    ["electricity", "fuel", "transport", "waste"].forEach(id => {
+        document.getElementById(id).addEventListener("input", calculateCO2);
+    });
+
+    // Enable Bootstrap tooltips
+    const tooltipTriggerList = Array.prototype.slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+</script>

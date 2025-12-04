@@ -1,0 +1,739 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero - Track Carbon. Build Trust.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            display: block;
+        }
+
+        main {
+            display: block;
+            width: 90%;
+        }
+
+        section {
+            display: block;
+            width: 100%;
+            clear: both;
+        }
+
+        /* Animated background circles */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(16,185,129,0.05) 50%, transparent 100%);
+            filter: blur(40px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+            .circle:nth-child(1) {
+                width: 400px;
+                height: 400px;
+                top: -100px;
+                left: -100px;
+                animation-delay: 0s;
+            }
+
+            .circle:nth-child(2) {
+                width: 500px;
+                height: 500px;
+                bottom: -150px;
+                right: -150px;
+                animation-delay: 7s;
+            }
+
+            .circle:nth-child(3) {
+                width: 300px;
+                height: 300px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation-delay: 14s;
+            }
+
+        @@keyframes float {
+            0%, 100%
+
+        {
+            transform: translate(0, 0) scale(1);
+        }
+
+        33% {
+            transform: translate(30px, -30px) scale(1.1);
+        }
+
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background-color: #000;
+            background-image: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(10,10,10,0.80) 100%), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80&fm=jpg&fit=crop');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            margin: 0;
+        }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+                z-index: 1;
+            }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @@keyframes fadeInUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            color: #d1d5db;
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            padding: 0.875rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn-hero:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+                color: #fff;
+            }
+
+                .btn-hero:hover::before {
+                    left: 100%;
+                }
+
+        /* Features Section */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 18px;
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .feature-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #10b981, #34d399);
+                transform: scaleX(0);
+                transition: transform 0.4s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+                border-color: rgba(16, 185, 129, 0.3);
+            }
+
+                .feature-card:hover::before {
+                    transform: scaleX(1);
+                }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-radius: 14px;
+            font-size: 1.75rem;
+            color: #10b981;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+
+        .feature-card h4 {
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            color: #f3f4f6;
+        }
+
+        .feature-card p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Counters Section */
+        .counters-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+            border-top: 1px solid rgba(16, 185, 129, 0.1);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .counters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .counter {
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+            .counter::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #10b981, transparent);
+            }
+
+        .counter-number {
+            font-size: xx-large;
+            font-weight: 900;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.75rem;
+        }
+
+        .counter-label {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Storytelling Section */
+        .story-section {
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .story-content {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .story-text {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+        }
+
+        .earth-image-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(16, 185, 129, 0.25);
+            display: block;
+        }
+
+            .earth-image-container::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, transparent 100%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+        .earth-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .earth-image-container:hover .earth-image {
+            transform: scale(1.05);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.03) 100%);
+            border-top: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: block;
+            clear: both;
+        }
+
+        .cta-content {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            color: #f3f4f6;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            color: #d1d5db;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            line-height: 1.65;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 10px;
+            padding: 0.95rem 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-cta:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+                color: #fff;
+            }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .hero
+
+        {
+            min-height: 90vh;
+            padding: 2rem 1.5rem;
+            background-attachment: scroll;
+        }
+
+        .section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .counters-grid {
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        .counters-section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        .story-section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        .cta-section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        }
+
+        @@media (max-width: 480px) {
+            .hero h1
+
+        {
+            font-size: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+        }
+
+        .btn-hero {
+            padding: 0.8rem 1.75rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-card {
+            padding: 1.75rem;
+        }
+
+        .counter-number {
+            font-size: 2.25rem;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-inner">
+                <h1>Track Carbon. Build Trust.</h1>
+                <p class="hero-subtitle">Transform sustainability into your competitive edge with real-time emissions tracking, credible reporting, and actionable insights that drive measurable impact.</p>
+                <a href="#features" class="btn-hero">Explore Features</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Everything You Need to Lead</h2>
+                <p class="section-subtitle">Powerful tools designed to make sustainability measurable, transparent, and profitable.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Real-Time Analytics</h4>
+                    <p>Visualize your carbon footprint with intuitive dashboards that turn complex data into clear, actionable insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Goal Management</h4>
+                    <p>Set ambitious targets, track progress, and celebrate milestones on your journey to net-zero emissions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>Seamless Integration</h4>
+                    <p>Connect effortlessly with your existing ERP, CRM, and IoT systems for unified sustainability reporting.</p>
+                </div>
+                @* <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Enterprise Security</h4>
+                    <p>Your data is protected with bank-level encryption and compliance with global data privacy standards.</p>
+                </div> *@
+            </div>
+        </section>
+
+        <!-- Counters Section -->
+        <section class="counters-section">
+            <div class="counters-grid">
+                <div class="counter">
+                    <div class="counter-number" id="companies">0+</div>
+                    <div class="counter-label">Companies Trust Us</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-number" id="emissions">0+</div>
+                    <div class="counter-label">Tons CO₂ Reduced</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-number" id="countries">0+</div>
+                    <div class="counter-label">Countries Worldwide</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Storytelling Section -->
+        <section class="story-section">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission</h2>
+            </div>
+            <div class="story-content">
+                <p class="story-text">
+                    Hero was founded on a bold belief: sustainability shouldn't be a checkbox—it should be a competitive advantage. We built this platform to empower businesses of every size to measure, reduce, and report their environmental impact with precision and confidence. Today, we're helping companies around the world turn climate responsibility into growth, trust, and long-term value.
+                </p>
+            </div>
+            <div class="earth-image-container">
+                <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=1920&q=80&fm=jpg&fit=crop" alt="Planet Earth from Space showcasing our beautiful blue planet" class="earth-image" loading="lazy">
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Lead the Change?</h2>
+                <p class="cta-subtitle">Join hundreds of forward-thinking companies already reducing their carbon footprint and building trust with Hero.</p>
+                <a class="btn-cta" asp-area="Identity" asp-page="/Account/Register">Start Your Journey</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated counters
+        const counters = [
+            { id: 'companies', target: 500, suffix: '+' },
+            { id: 'emissions', target: 1000000, suffix: '+', format: true },
+            { id: 'countries', target: 30, suffix: '+' }
+        ];
+
+        function animateCounter(id, target, duration = 2000, suffix = '', format = false) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            const startTime = performance.now();
+            const startValue = 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+
+                element.textContent = format
+                    ? currentValue.toLocaleString() + suffix
+                    : currentValue + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Intersection Observer for counters
+        const countersSection = document.querySelector('.counters-section');
+        if ('IntersectionObserver' in window && countersSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(({ id, target, suffix = '', format = false }) => {
+                            animateCounter(id, target, 2000, suffix, format);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(countersSection);
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            counters.forEach(({ id, target, suffix = '', format = false }) => {
+                animateCounter(id, target, 2000, suffix, format);
+            });
+        }
+
+        // Smooth scroll with offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

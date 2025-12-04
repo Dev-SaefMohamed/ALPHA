@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hero.Data\Hero.Data.csproj" />
+    <ProjectReference Include="..\Hero.Models\Hero.Models.csproj" />
+  </ItemGroup>
+
+</Project>
