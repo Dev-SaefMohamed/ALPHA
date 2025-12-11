@@ -1,4 +1,4 @@
-🌍 Hero EcoTrack
+🌍 Hero 
 Corporate Carbon Footprint Management SaaS (B2B)
 
 Hero EcoTrack is a full-stack carbon management platform built for Egyptian businesses.
